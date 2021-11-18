@@ -27,7 +27,7 @@ $( document ).ready( function ()
                     for ( var i = 0; i < registros.length; i++ )
                     {
 
-                        resultado += "<tr> <td>" + registros[ i ][ "num_control" ] + "</td> <td>" + registros[ i ][ "nombre" ]
+                        resultado += "<tr> <td>" + registros[ i ][ "num_control" ] + "</td> <td>" + registros[ i ][ "nombre_alumno" ]
                             + "</td> <td>" + registros[ i ][ "apePat" ] + "</td> <td>" + registros[ i ][ "apeMat" ] + "</td> <td>" + registros[ i ][ "telefono" ] +
                             "</td>" + "<td><input type = 'hidden' name = 'codigoProducto' value = " + registros[ i ][ "id" ] + "> " +
                             "<a data-toggle='tooltip' data-placement='right' title='Editar Alumno' href='./editStudents/" + registros[ i ][ "id" ] + "'>" +

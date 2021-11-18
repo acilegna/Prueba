@@ -17,7 +17,7 @@
                     <div class="form-group col-md-6">
                         <label for="inputNombre">Nombre Alumno</label>
                         <input type="text" class="form-control" id="inputNombre" required name="inputNombre"
-                            value="{{ $alumno->nombre }}">
+                            value="{{ $alumno->nombre_alumno }}">
                     </div>
 
                 </div>

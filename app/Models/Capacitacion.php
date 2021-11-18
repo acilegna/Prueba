@@ -30,18 +30,20 @@ class Capacitacion extends Model
     }
     public static  function capacitacion()
     {
-        //  return self::with('materia:id,materia,id', 'alumno:id,num_control,nombre,apePat,telefono', 'maestro:id,nombre')->get();
-
+        //consulta eloquent
+        return self::with('materia:id,materia,id', 'alumno:id,num_control,nombre_alumno,apePat,telefono', 'maestro:id,nombre')->get();
+        /*   consulta query builder 
         return self::join('materias', 'materias.id', '=', 'capacitacion.id_materia')
             ->join('alumnos', 'alumnos.id', '=', 'capacitacion.id_alumno')
             ->join('maestros', 'maestros.id', '=', 'capacitacion.id_maestro')
             ->select('capacitacion.id as id_capacitacion', 'materias.id as id_materia', 'materias.materia', 'alumnos.id as id_alumno', 'alumnos.num_control', 'alumnos.nombre as nombre_alumno', 'alumnos.apePat', 'alumnos.telefono', 'maestros.nombre', 'maestros.id as id_maestros')
-            ->get();
+            ->get();*/
     }
 
     public static  function searchCapacitacion($param)
 
     {
+        /* filtro con query builder
         return self::join('materias', 'materias.id', '=', 'capacitacion.id_materia')
             ->join('alumnos', 'alumnos.id', '=', 'capacitacion.id_alumno')
             ->join('maestros', 'maestros.id', '=', 'capacitacion.id_maestro')
@@ -50,18 +52,30 @@ class Capacitacion extends Model
             ->orWhere('alumnos.apePat', 'like', '%' . $param . '%')
             ->orWhere('alumnos.num_control', 'like', '%' . $param . '%')
             ->get();
-        /*
-        return self::whereHas('materia', function ($q) use ($param) {
-            $q->where('materia', 'like', '%$param%');  
-        })->get();*/
+            
+        
+            */
+        //filtro eloquent
+        return self::with('materia:id,materia,id', 'alumno:id,num_control,nombre_alumno,apePat,telefono', 'maestro:id,nombre')
+            ->whereHas('materia', function ($q) use ($param) {
+                $q->where('materia', 'like', '%' . $param . '%');
+            })
+            ->orwhereHas('alumno', function ($q) use ($param) {
+                $q->where('nombre_alumno', 'like', '%' . $param . '%');
+            })
+            ->orwhereHas('maestro', function ($q) use ($param) {
+                $q->where('nombre', 'like', '%' . $param . '%');
+            })
+            ->get();
     }
+
 
 
     public static  function findCapacitacion($id)
     {
         return self::with(
             'materia:id,materia,id',
-            'alumno:id,num_control,nombre,apePat,telefono',
+            'alumno:id,num_control,nombre_alumno,apePat,telefono',
             'maestro:id,nombre'
         )->where('id', $id)->get();
     }

@@ -22,6 +22,7 @@ class CapacitacionController extends Controller
 
     public function  viewAsingSub()
     {
+        /*
         $maestro = Maestro::all('nombre', 'id');
         $alumno = Alumno::all('nombre', 'id');
         $materia = Materia::all('materia', 'id');
@@ -29,7 +30,17 @@ class CapacitacionController extends Controller
         return view('capacitacion.create', [
             'maestro' => $maestro,
             'alumno' => $alumno, 'materia' => $materia
-        ]);
+        ]);*/
+        $param = 'Español';
+
+
+        $res = Capacitacion::searchCapacitacion($param);
+        var_dump(
+            $res[0]->materia->materia,
+            $res[0]->alumno->nombre_alumno
+
+
+        );
     }
     public function saveAsing(Request $request)
     {

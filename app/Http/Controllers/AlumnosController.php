@@ -61,7 +61,7 @@ class AlumnosController extends Controller
 
             $alumnos = new Alumno();
             $alumnos->num_control =  $NControl;
-            $alumnos->nombre =  $request->inputNombre;
+            $alumnos->nombre_alumno =  $request->inputNombre;
             $alumnos->apePat =  $request->inputPaterno;
             $alumnos->apeMat =  $request->inputMaterno;
             $alumnos->telefono =  $request->inputTelefono;
@@ -90,7 +90,7 @@ class AlumnosController extends Controller
 
         if ($resultControlNumber->num_control == $controlNumber) {
             $alumnos = Alumno::find($id);
-            $alumnos->nombre =  $request->inputNombre;
+            $alumnos->nombre_alumno =  $request->inputNombre;
             $alumnos->apePat =  $request->inputPaterno;
             $alumnos->apeMat =  $request->inputMaterno;
             $alumnos->telefono =  $request->inputTelefono;

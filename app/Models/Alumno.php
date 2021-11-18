@@ -15,7 +15,7 @@ class Alumno extends Model
     }
     public static function searchByStudents($query)
     {
-        return self::where('nombre', 'like', '%' . $query . '%')
+        return self::where('nombre_alumno', 'like', '%' . $query . '%')
             ->orWhere('apePat', 'like', '%' . $query . '%')
             ->orWhere('num_control', 'like', '%' . $query . '%')
             ->orderBy('id', 'desc')
